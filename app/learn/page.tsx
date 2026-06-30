@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 
 const C = {
   navy:  "#1a2744",
@@ -11,6 +12,24 @@ const C = {
 };
 
 export default function LearnPage() {
+  useEffect(() => {
+    // Watch the ROASForm iframe container for a success/thank-you message
+    const container = document.querySelector("section iframe")?.closest("div") ?? document.body;
+    const observer = new MutationObserver(() => {
+      const text = document.body.innerText.toLowerCase();
+      if (text.includes("thank you") || text.includes("submission") || text.includes("you're all set")) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const fbq = (window as any).fbq;
+        if (typeof fbq === "function") {
+          fbq("track", "Lead");
+          observer.disconnect();
+        }
+      }
+    });
+    observer.observe(container, { childList: true, subtree: true });
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <>
       <style>{`
