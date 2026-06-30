@@ -13,21 +13,38 @@ const C = {
 
 export default function LearnPage() {
   useEffect(() => {
-    // Watch the ROASForm iframe container for a success/thank-you message
-    const container = document.querySelector("section iframe")?.closest("div") ?? document.body;
-    const observer = new MutationObserver(() => {
-      const text = document.body.innerText.toLowerCase();
-      if (text.includes("thank you") || text.includes("submission") || text.includes("you're all set")) {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const fbq = (window as any).fbq;
-        if (typeof fbq === "function") {
-          fbq("track", "Lead");
-          observer.disconnect();
+    let fired = false;
+
+    const handleMessage = (event: MessageEvent) => {
+      if (fired) return;
+      try {
+        // ROASForm sends a postMessage on completion — check for any
+        // submission/complete signal regardless of exact payload shape
+        const data = typeof event.data === "string" ? JSON.parse(event.data) : event.data;
+        const isComplete =
+          data?.type === "form_complete" ||
+          data?.type === "form_submitted" ||
+          data?.event === "submitted" ||
+          data?.event === "complete" ||
+          data?.status === "submitted" ||
+          JSON.stringify(data).toLowerCase().includes("submit") ||
+          JSON.stringify(data).toLowerCase().includes("complete");
+
+        if (isComplete) {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          const fbq = (window as any).fbq;
+          if (typeof window !== "undefined" && typeof fbq === "function") {
+            fbq("track", "Lead");
+            fired = true;
+          }
         }
+      } catch {
+        // non-JSON messages — ignore
       }
-    });
-    observer.observe(container, { childList: true, subtree: true });
-    return () => observer.disconnect();
+    };
+
+    window.addEventListener("message", handleMessage);
+    return () => window.removeEventListener("message", handleMessage);
   }, []);
 
   return (
