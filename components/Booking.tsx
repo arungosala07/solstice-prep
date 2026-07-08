@@ -53,7 +53,7 @@ export default function Booking() {
           className="mb-10"
         >
           <a
-            href="https://api.leadconnectorhq.com/widget/booking/NelCQkbhDrMSbHcodeUu"
+            href="https://api.leadconnectorhq.com/widget/bookings/parent-intro-with-solstice-prep"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-[#F5A623] text-white font-bold px-10 py-5 rounded-full text-base transition-all duration-300 hover:-translate-y-1"
