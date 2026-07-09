@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import Script from "next/script";
 
 const C = {
   navy:  "#1a2744",
@@ -16,10 +17,11 @@ export default function LearnPage() {
     let fired = false;
 
     const handleMessage = (event: MessageEvent) => {
+      // DEBUG: log every postMessage so we can see what ROASForm sends
+      console.log("[ROASForm postMessage]", event.origin, event.data);
+
       if (fired) return;
       try {
-        // ROASForm sends a postMessage on completion — check for any
-        // submission/complete signal regardless of exact payload shape
         const data = typeof event.data === "string" ? JSON.parse(event.data) : event.data;
         const isComplete =
           data?.type === "form_complete" ||
@@ -153,6 +155,33 @@ export default function LearnPage() {
         </footer>
 
       </div>
+
+      {/* Meta Pixel for /learn */}
+      <Script
+        id="meta-pixel-learn"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+            !function(f,b,e,v,n,t,s)
+            {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+            n.queue=[];t=b.createElement(e);t.async=!0;
+            t.src=v;s=b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t,s)}(window, document,'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', '1581402943648702');
+            fbq('track', 'PageView');
+          `,
+        }}
+      />
+      <noscript>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img height="1" width="1" style={{ display: "none" }}
+          src="https://www.facebook.com/tr?id=1581402943648702&ev=PageView&noscript=1"
+          alt=""
+        />
+      </noscript>
 
     </>
   );
