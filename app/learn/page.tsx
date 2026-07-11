@@ -86,7 +86,7 @@ export default function LearnPage() {
             fontSize: "clamp(30px, 8vw, 48px)",
             marginBottom: 14, letterSpacing: "-0.025em",
           }}>
-            We Guarantee Your Child a <span style={{ color: amber }}>34+ ACT Score</span> or We Keep Working <span style={{ color: amber }}>For Free</span>
+            We Guarantee Your Child a <span style={{ color: amber }}>34+ ACT Score</span> or We Keep Working <span style={{ color: amber }}>FOR FREE</span>
           </h1>
 
           <p style={{
