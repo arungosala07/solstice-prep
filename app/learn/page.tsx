@@ -67,14 +67,14 @@ export default function LearnPage() {
       <div style={{ minHeight: "100vh", background: bg }}>
 
         {/* ── HERO ──────────────────────────────────────────────── */}
-        <section style={{ padding: "52px 24px 36px", textAlign: "center", maxWidth: 660, margin: "0 auto" }}>
+        <section style={{ padding: "36px 20px 20px", textAlign: "center", maxWidth: 620, margin: "0 auto" }}>
 
-          <div style={{ display: "inline-flex", marginBottom: 22 }}>
+          <div style={{ display: "inline-flex", marginBottom: 14 }}>
             <span style={{
-              background: `rgba(245,166,35,0.1)`, color: "#b37400",
-              fontSize: 11, fontWeight: 700, letterSpacing: "0.13em",
-              textTransform: "uppercase", padding: "8px 18px", borderRadius: 999,
-              border: "1px solid rgba(245,166,35,0.25)",
+              background: "rgba(196,130,10,0.08)", color: "#9a6500",
+              fontSize: 10, fontWeight: 800, letterSpacing: "0.12em",
+              textTransform: "uppercase", padding: "7px 16px", borderRadius: 999,
+              border: "1px solid rgba(196,130,10,0.2)",
             }}>
               Attention Parents of College-Bound High Schoolers
             </span>
@@ -82,37 +82,34 @@ export default function LearnPage() {
 
           <h1 style={{
             fontFamily: "'Inter', system-ui, sans-serif",
-            fontWeight: 900, lineHeight: 1.08, color: navy,
-            fontSize: "clamp(28px, 7.5vw, 50px)",
-            marginBottom: 20, letterSpacing: "-0.02em",
+            fontWeight: 900, lineHeight: 1.05, color: navy,
+            fontSize: "clamp(30px, 8vw, 48px)",
+            marginBottom: 14, letterSpacing: "-0.025em",
           }}>
-            We Guarantee Your Child a{" "}
-            <span style={{ color: amber }}>34+ ACT Score</span>{" "}
-            or We Keep Working{" "}
-            <span style={{ color: amber }}>For Free</span>
+            We Guarantee Your Child a <span style={{ color: amber }}>34+ ACT Score</span> or We Keep Working <span style={{ color: amber }}>For Free</span>
           </h1>
 
           <p style={{
-            fontSize: "clamp(15px, 4vw, 17px)", fontWeight: 600,
-            color: navy, lineHeight: 1.55, marginBottom: 28, opacity: 0.75,
+            fontSize: "clamp(14px, 3.5vw, 16px)", fontWeight: 700,
+            color: navy, lineHeight: 1.5, marginBottom: 18,
           }}>
-            Fill out the form below to book your free strategy call.
+            Fill out the form below to book your FREE Strategy Call.
           </p>
 
           <svg style={{ display: "block", margin: "0 auto", animation: "bounceY 1.4s ease-in-out infinite" }}
-            width="26" height="26" fill="none" viewBox="0 0 24 24" stroke={amber} strokeWidth={2.5}>
+            width="24" height="24" fill="none" viewBox="0 0 24 24" stroke={amber} strokeWidth={2.5}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
           </svg>
         </section>
 
         {/* ── FORM ──────────────────────────────────────────────── */}
-        <section style={{ padding: "0 16px 64px" }}>
-          <div style={{ maxWidth: 640, margin: "0 auto" }}>
+        <section style={{ padding: "12px 16px 56px" }}>
+          <div style={{ maxWidth: 580, margin: "0 auto" }}>
             <iframe
               src="https://my.roasform.com/f/63e80b-8f3987-51eefc"
               style={{
-                width: "100%", height: 600, border: "none", borderRadius: 16,
-                boxShadow: "0 8px 40px rgba(26,39,68,0.10)",
+                width: "100%", height: 540, border: "none", borderRadius: 14,
+                boxShadow: "0 6px 32px rgba(26,39,68,0.09)",
               }}
               title="Solstice Prep Strategy Call Form"
             />
