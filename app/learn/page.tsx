@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import Script from "next/script";
 
-const amber = "#F5A623";
+const amber = "#C4820A";
 const navy  = "#1a2744";
 const bg    = "#FAFAF7";
 const muted = "rgba(26,39,68,0.5)";
