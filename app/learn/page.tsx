@@ -34,22 +34,39 @@ function Stars({ rating }: { rating: number }) {
 
 export default function LearnPage() {
   useEffect(() => {
+    // Inject ROASForm embed script so it renders in the page DOM
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const w = window as any;
+    w.ROASForm = w.ROASForm || { q: [] };
+    w.ROASForm.q.push({
+      formId: "63e80b-8f3987-51eefc",
+      mode: "inline",
+      inheritBackground: false,
+      container: "#roasform-embed",
+      // onComplete fires if ROASForm supports JS callbacks
+      onComplete: () => {
+        if (typeof w.fbq === "function") w.fbq("track", "Lead");
+        window.location.href = "/thankyou";
+      },
+    });
+    if (!w.ROASForm._l) {
+      w.ROASForm._l = 1;
+      const s = document.createElement("script");
+      s.src = "https://my.roasform.com/roasform-embed.js";
+      s.async = true;
+      document.head.appendChild(s);
+    }
+
+    // Fallback: postMessage listener in case onComplete isn't supported
     let fired = false;
     const handleMessage = (event: MessageEvent) => {
       if (fired) return;
       try {
         const data = typeof event.data === "string" ? JSON.parse(event.data) : event.data;
-        const isComplete =
-          data?.type === "form_complete" || data?.type === "form_submitted" ||
-          data?.event === "submitted" || data?.event === "complete" ||
-          data?.status === "submitted" ||
-          JSON.stringify(data).toLowerCase().includes("submit") ||
-          JSON.stringify(data).toLowerCase().includes("complete");
-        if (isComplete) {
+        const str = JSON.stringify(data).toLowerCase();
+        if (str.includes("complet") || str.includes("submit") || str.includes("thank")) {
           fired = true;
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          const fbq = (window as any).fbq;
-          if (typeof fbq === "function") fbq("track", "Lead");
+          if (typeof w.fbq === "function") w.fbq("track", "Lead");
           window.location.href = "/thankyou";
         }
       } catch { /* ignore */ }
@@ -104,25 +121,16 @@ export default function LearnPage() {
           </svg>
         </section>
 
-        {/* ── CTA ───────────────────────────────────────────────── */}
-        <section style={{ padding: "12px 16px 56px", textAlign: "center" }}>
-          <div style={{ maxWidth: 480, margin: "0 auto" }}>
-            <a
-              href="https://my.roasform.com/f/63e80b-8f3987-51eefc"
+        {/* ── FORM ──────────────────────────────────────────────── */}
+        <section style={{ padding: "12px 16px 56px" }}>
+          <div style={{ maxWidth: 580, margin: "0 auto" }}>
+            <div
+              id="roasform-embed"
               style={{
-                display: "block", width: "100%",
-                background: amber, color: "#fff",
-                fontSize: 18, fontWeight: 800,
-                padding: "20px 32px", borderRadius: 14,
-                textDecoration: "none", letterSpacing: "-0.01em",
-                boxShadow: "0 6px 32px rgba(196,130,10,0.28)",
+                width: "100%", minHeight: 540, borderRadius: 14,
+                boxShadow: "0 6px 32px rgba(26,39,68,0.09)", overflow: "hidden",
               }}
-            >
-              Book Your FREE Strategy Call →
-            </a>
-            <p style={{ marginTop: 14, fontSize: 13, color: muted, fontWeight: 500 }}>
-              Takes 2 minutes. No obligation.
-            </p>
+            />
           </div>
         </section>
 
