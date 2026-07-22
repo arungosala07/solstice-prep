@@ -46,9 +46,11 @@ export default function LearnPage() {
           JSON.stringify(data).toLowerCase().includes("submit") ||
           JSON.stringify(data).toLowerCase().includes("complete");
         if (isComplete) {
+          fired = true;
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           const fbq = (window as any).fbq;
-          if (typeof fbq === "function") { fbq("track", "Lead"); fired = true; }
+          if (typeof fbq === "function") fbq("track", "Lead");
+          window.location.href = "/thankyou";
         }
       } catch { /* ignore */ }
     };
@@ -112,6 +114,7 @@ export default function LearnPage() {
                 boxShadow: "0 6px 32px rgba(26,39,68,0.09)",
               }}
               title="Solstice Prep Strategy Call Form"
+              sandbox="allow-scripts allow-forms allow-same-origin allow-top-navigation allow-popups"
             />
           </div>
         </section>
