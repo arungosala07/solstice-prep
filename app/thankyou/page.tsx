@@ -6,10 +6,10 @@ import { useSearchParams } from "next/navigation";
 import { SunIcon } from "@/components/icons/SunIcon";
 
 // ─── CONFIG CONSTANTS — swap these before going live ────────────────────────
-const CONFIRM_PHONE    = "+1XXXXXXXXXX";       // Arun's number for the confirm SMS
-const CONFIRM_TEXT_BODY = "YES";               // Body of the confirm SMS
-const PREP_FORM_URL    = "https://REPLACE_ME"; // Pre-call intake form URL
-const RESCHEDULE_URL   = "https://REPLACE_ME"; // Booking / reschedule link
+const CONFIRM_PHONE    = "+14083334112";
+const CONFIRM_TEXT_BODY = "YES";
+const PREP_FORM_URL    = "https://my.roasform.com/f/45caad-fe970d-f9ea8c";
+const RESCHEDULE_URL   = "https://api.leadconnectorhq.com/widget/bookings/parent-intro-with-solstice-prep";
 const SHOW_VIDEO       = false;                // Flip to true when founder video is ready
 
 // ⚠️  META PIXEL — disabled by default.
