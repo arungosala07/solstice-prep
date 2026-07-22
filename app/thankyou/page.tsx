@@ -189,7 +189,7 @@ function ThankYouContent() {
               <div className="flex items-center gap-3 mb-5">
                 <div className="w-9 h-9 rounded-full bg-amber-500 flex items-center justify-center text-white font-bold text-sm flex-shrink-0">1</div>
                 <h2 className="font-serif font-bold text-charcoal text-xl leading-tight" style={{ fontFamily: "var(--font-playfair)" }}>
-                  Tap below and reply YES to confirm
+                  Tap below and text CONFIRM to lock in your spot
                 </h2>
               </div>
               <a
