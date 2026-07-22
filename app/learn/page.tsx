@@ -104,18 +104,25 @@ export default function LearnPage() {
           </svg>
         </section>
 
-        {/* ── FORM ──────────────────────────────────────────────── */}
-        <section style={{ padding: "12px 16px 56px" }}>
-          <div style={{ maxWidth: 580, margin: "0 auto" }}>
-            <iframe
-              src="https://my.roasform.com/f/63e80b-8f3987-51eefc"
+        {/* ── CTA ───────────────────────────────────────────────── */}
+        <section style={{ padding: "12px 16px 56px", textAlign: "center" }}>
+          <div style={{ maxWidth: 480, margin: "0 auto" }}>
+            <a
+              href="https://my.roasform.com/f/63e80b-8f3987-51eefc"
               style={{
-                width: "100%", height: 540, border: "none", borderRadius: 14,
-                boxShadow: "0 6px 32px rgba(26,39,68,0.09)",
+                display: "block", width: "100%",
+                background: amber, color: "#fff",
+                fontSize: 18, fontWeight: 800,
+                padding: "20px 32px", borderRadius: 14,
+                textDecoration: "none", letterSpacing: "-0.01em",
+                boxShadow: "0 6px 32px rgba(196,130,10,0.28)",
               }}
-              title="Solstice Prep Strategy Call Form"
-              sandbox="allow-scripts allow-forms allow-same-origin allow-top-navigation allow-popups"
-            />
+            >
+              Book Your FREE Strategy Call →
+            </a>
+            <p style={{ marginTop: 14, fontSize: 13, color: muted, fontWeight: 500 }}>
+              Takes 2 minutes. No obligation.
+            </p>
           </div>
         </section>
 
